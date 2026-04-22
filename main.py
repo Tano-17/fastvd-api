@@ -65,6 +65,15 @@ def extract_video(request: URLRequest):
         'skip_download': True,
         'quiet': True,
         'no_warnings': True,
+        # Spoof Android client to bypass YouTube bot detection on cloud IPs
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'web'],
+            }
+        },
+        'http_headers': {
+            'User-Agent': 'com.google.android.youtube/19.09.37 (Linux; U; Android 11) gzip',
+        },
     }
     
     try:
