@@ -65,14 +65,15 @@ def extract_video(request: URLRequest):
         'skip_download': True,
         'quiet': True,
         'no_warnings': True,
-        # Spoof Android client to bypass YouTube bot detection on cloud IPs
+        # iOS client bypasses YouTube bot detection more reliably than Android
         'extractor_args': {
             'youtube': {
-                'player_client': ['android', 'web'],
+                'player_client': ['ios', 'tv_embedded'],
+                'player_skip': ['webpage', 'configs'],
             }
         },
         'http_headers': {
-            'User-Agent': 'com.google.android.youtube/19.09.37 (Linux; U; Android 11) gzip',
+            'User-Agent': 'com.google.ios.youtube/19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)',
         },
     }
     
